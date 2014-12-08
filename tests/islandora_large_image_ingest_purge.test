@@ -99,7 +99,7 @@ class IslandoraLargeImageIngestTestCase extends IslandoraCollectionWebTestCase {
   /**
    * Creates an administrative user and attempts to ingest a test JP2.
    */
-  public function testIngestPurgeLargeImage() {
+  public function testIngestPurgeLargeImageJP2() {
 
     $user = $this->drupalCreateUser(array(
       'view fedora repository objects',
