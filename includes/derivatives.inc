@@ -45,7 +45,7 @@ function islandora_large_image_create_jp2_derivative(AbstractObject $object, $fo
       'messages' => array(),
     );
     $uploaded_file = islandora_large_image_get_uploaded_file($object);
-    // If the file for OBJ is a JP2, use that file for the jp2 derivative datastream
+    // If the iuploaded file is a JP2, use that file for the jp2 datastream.
     if (islandora_large_image_is_jp2($uploaded_file)) {
       $derivative_file = $uploaded_file;
     }
@@ -115,6 +115,7 @@ function islandora_large_image_create_jp2_derivative(AbstractObject $object, $fo
         $kakadu = FALSE;
       }
     }
+
     if (!$kakadu) {
       $args = islandora_large_image_get_args($lossless);
       if ($depth < 8) {
@@ -126,7 +127,7 @@ function islandora_large_image_create_jp2_derivative(AbstractObject $object, $fo
         $args);
 
     }
-    
+
     if ($derivative_file === FALSE) {
       $to_return['messages'][] = array(
         'message' => t('Failed to create JP2 derivative.'),
