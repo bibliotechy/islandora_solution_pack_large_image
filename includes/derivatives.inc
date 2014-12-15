@@ -45,8 +45,9 @@ function islandora_large_image_create_jp2_derivative(AbstractObject $object, $fo
       'messages' => array(),
     );
     $uploaded_file = islandora_large_image_get_uploaded_file($object);
+    $lossless = variable_get('islandora_lossless', FALSE);
     // If the iuploaded file is a JP2, use that file for the jp2 datastream.
-    if (islandora_large_image_is_jp2($uploaded_file)) {
+    if (islandora_large_image_is_jp2($uploaded_file) && !$lossless) {
       $derivative_file = $uploaded_file;
     }
     else {
@@ -58,7 +59,6 @@ function islandora_large_image_create_jp2_derivative(AbstractObject $object, $fo
       if ($mime == 'image/jpeg' || $mime == 'image/jpg' || $depth < 8) {
         $kakadu = FALSE;
       }
-      $lossless = variable_get('islandora_lossless', FALSE);
       // Use lossless if the image would look too bad with compression.
       if (!$lossless) {
         $identify = islandora_large_image_get_identify();
